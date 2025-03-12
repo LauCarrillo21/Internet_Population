@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 
 #Create a variable to identify the file
 filename = 'data.csv'
+#Creates an empty dictionary that will store population data for each continent.
+population_per_continent = {}
 
 #Actions to take with the data
 with open(filename, 'r') as csvfile:
@@ -16,10 +18,15 @@ with open(filename, 'r') as csvfile:
     year = line['year']
     population = line['population']
 
-    print(continent)
-    print(year)
-    print(population)
+    #Check if the continent exists in the dictionary
+    if continent not in population_per_continent:
+      #Initialize an entry for the new continent
+      population_per_continent[continent] = {'population': [], 'years': []}
+    #Store the population and year data
+    population_per_continent[continent]['population'].append(population)
+    population_per_continent[continent]['years'].append(year)
 
+   
 
 #Independent Plot
 #X horizontal axis, Y vertical axis
